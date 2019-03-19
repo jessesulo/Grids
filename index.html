@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Times Table</title>
+</head>
+<body>
+</body>
+	<script>
+		var table = document.createElement("TABLE");
+		table.setAttribute("id", "tab")
+		document.body.appendChild(table);
+		
+		console.log(table);
+		
+		var red = false
+		
+		for(let i = 1; i <= 13; i++)
+			{
+				var r = document.createElement("TR");
+				r.setAttribute("id", i + "r");
+				document.getElementById("tab").appendChild(r);
+				console.log(r);
+				for(let a = 1; a <= 13; a++)
+					{
+						let out = i * a;
+						let td = document.createElement("TD");
+						td.setAttribute("id", i + "." + a + "td");
+						console.log(td);
+						document.getElementById(i + "r").appendChild(td);
+						document.getElementById(i + "." + a + "td").innerHTML = setProperSpace(out);
+						
+						setBgCOddsEvens(out, i, a);
+						//setBgCEveryOther(i, a);
+					}
+			}
+		
+		function setBgCOddsEvens(num, i, a)
+		{
+			if(num % 2 == 0)
+				{
+					document.getElementById(i + "." + a + "td").style.backgroundColor = "cyan";
+				}
+			else
+				{
+					document.getElementById(i + "." + a + "td").style.backgroundColor = "coral";
+				}
+		}
+		
+		function setBgCEveryOther(i, a)
+		{
+			if(red)
+				{
+					document.getElementById(i + "." + a + "td").style.backgroundColor = "black";
+					document.getElementById(i + "." + a + "td").style.color = "white";
+					console.log("red");
+					red = false;
+				}
+			else
+				{
+					document.getElementById(i + "." + a + "td").style.backgroundColor = "red";
+					console.log("white");
+					red = true;
+				}
+		}
+		
+		function setProperSpace(num)
+		{
+			if(num >= 100)
+				{
+					return num;
+				}
+			else if(num >= 10)
+				{
+					return num + "&nbsp;&nbsp;";
+				}
+			else 
+				{
+					return num + "&nbsp;&nbsp;&nbsp;";
+				}
+		}
+	</script>
+</html>

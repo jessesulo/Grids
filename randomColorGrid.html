@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+<style>
+	body
+	{overflow: hidden;}
+</style>
+<body>
+	
+</body>
+	<script>
+		var rows = 50;
+		var colums = 90;
+		
+		var table = document.createElement("TABLE");
+		table.setAttribute("id", "tab");
+		document.body.appendChild(table);
+		
+		console.log(table);
+		for(let i = 1; i <= rows; i++)//rows
+			{
+				var r = document.createElement("TR");
+				r.setAttribute("id", i + "r");
+				document.getElementById("tab").appendChild(r);
+				console.log(r);
+				for(let a = 1; a <= colums; a++)//columns
+					{
+						let td = document.createElement("TD");
+						td.setAttribute("id", i + "." + a + "td");
+						console.log(td);
+						document.getElementById(i + "r").appendChild(td);
+						document.getElementById(i + "." + a + "td").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						setColor(document.getElementById(i + "." + a + "td"));
+					}
+			}
+		
+		function setColor(obj)
+		{
+			let r = Math.floor(Math.random() * 256);
+			let g = Math.floor(Math.random() * 256);
+			let b = Math.floor(Math.random() * 256);
+			
+			obj.style.backgroundColor = "rgb("+r+","+g+","+b+")"
+		}
+		
+		setInterval(function ()
+		{
+			for(let i = 1; i <= rows; i++)
+				{
+					for(let a = 1; a <= colums; a++)
+						{
+							setColor(document.getElementById(i + "." + a + "td"));
+						}
+				}
+		}, 200);
+	</script>
+</html>

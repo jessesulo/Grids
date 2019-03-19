@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+<style>
+	body
+	{overflow: hidden;}
+	table
+	{
+		user-select: none;
+		padding: 0px;
+		margin: 0px;
+		border: none;
+	}
+	td
+	{
+		margin: 0px;
+		width: 20px;
+		height: 20px;
+		padding: 0px;
+		border: none;
+	}
+</style>
+<body>
+	
+</body>
+	<script>
+		var rows = 65;
+		var colums = 120;
+		
+		var plsPaint = false;
+		var plsErase = false;
+		
+		var table = document.createElement("TABLE");
+		table.setAttribute("id", "tab");
+		table.setAttribute("cellspacing", 0);
+		table.setAttribute("cellpadding", 0);
+		document.body.appendChild(table);
+		
+		console.log(table);
+		for(let i = 1; i <= rows; i++)//rows
+			{
+				var r = document.createElement("TR");
+				r.setAttribute("id", i + "r");
+				document.getElementById("tab").appendChild(r);
+				console.log(r);
+				for(let a = 1; a <= colums; a++)//columns
+					{
+						let td = document.createElement("TD");
+						td.setAttribute("id", i + "" + a);
+						td.setAttribute("onmouseover", "paint(this)")
+						console.log(td);
+						document.getElementById(i + "r").appendChild(td);
+						document.getElementById(i + "" + a).innerHTML = "";
+					}
+			}
+		
+		function paint(obj)
+		{
+			let r = Math.floor(Math.random() * 256);
+			let g = Math.floor(Math.random() * 256);
+			let b = Math.floor(Math.random() * 256);
+			
+			if(plsPaint)
+				{
+					obj.style.backgroundColor = "rgb("+r+","+g+","+b+")";
+				}
+			else if(plsErase)
+				{
+					let id = obj.id;
+					obj.style.backgroundColor = "white";
+				}
+		}
+		
+		document.body.onmousedown = function(e) { 
+			if(e.which == 1)
+				{plsPaint = true;}
+		  	else
+				{plsErase = true;}
+		}
+		document.body.onmouseup = function(e) { 
+		  	if(e.which == 1)
+				{plsPaint = false;}
+			else
+				{plsErase = false;}
+		}
+	</script>
+</html>
